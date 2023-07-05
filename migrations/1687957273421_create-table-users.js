@@ -13,7 +13,7 @@ exports.up = (pgm) => {
       unique: true,
       notNull: true,
     },
-    passwords: {
+    password: {
       type: 'TEXT',
       notNull: true,
     },
