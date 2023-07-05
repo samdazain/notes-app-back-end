@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const { Pool } = require('pg');
 const { nanoid } = require('nanoid');
 const bcrypt = require('bcrypt');
@@ -13,8 +12,6 @@ class UsersService {
 
   async addUser({ username, password, fullname }) {
     await this.verifyNewUsername(username);
-    console.log(username);
-
     const id = `user-${nanoid(16)}`;
     const hashedPassword = await bcrypt.hash(password, 10);
     const query = {
@@ -60,7 +57,7 @@ class UsersService {
 
   async verifyUserCredential(username, password) {
     const query = {
-      text: 'SELECT id, password FROM users WHERE username =$1',
+      text: 'SELECT id, password FROM users WHERE username = $1',
       values: [username],
     };
 
